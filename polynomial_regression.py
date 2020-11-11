@@ -3,10 +3,10 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Importing the full dataset and storing into Pandas DataFrame
-dataset = pd.read_csv('idkwhatimgonnado.csv')
+dataset = pd.read_csv('Position_Salaries.csv')
 
 # Splitting into x and y subsets
-x = dataset.iloc[:, 0:2].values
+x = dataset.iloc[:, 1:2].values
 y = dataset.iloc[:, 2].values
 
 # No data preprocessing necessary
