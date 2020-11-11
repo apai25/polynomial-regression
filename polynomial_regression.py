@@ -25,7 +25,7 @@ regressor.fit(x_poly, y)
 predictions = regressor.predict(x_poly)
 
 # Creating x_grid variable (has smaller increments) for smoother graphing
-x_grid = np.arange(min(x), max(x), step=0.01)
+x_grid = np.arange(min(x), max(x) + .01, step=0.01)
 x_grid = x_grid.reshape(len(x_grid), 1)
 
 # Graphing the model with the data
