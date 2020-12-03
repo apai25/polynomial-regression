@@ -9,7 +9,18 @@ dataset = pd.read_csv('Position_Salaries.csv')
 x = dataset.iloc[:, 1:2].values
 y = dataset.iloc[:, 2].values
 
-# No data preprocessing necessary
+# Creating training and test sets
+from sklearn.model_selection import train_test_split
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=.2, random_state=0)
+
+from sklearn.preprocessing import StandardScaler
+sc_x = StandardScaler()
+sc_x.fit_transform(x_train)
+sc_x.transform(x_test)
+
+sc_y = StandardScaler()
+sc_y.fit_transform(y_train)
+sc_y.transform(y_test)
 
 # Polynomial transformation of the dataset to 4th degree
 from sklearn.preprocessing import PolynomialFeatures
