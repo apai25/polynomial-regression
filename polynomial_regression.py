@@ -41,7 +41,7 @@ x_grid = x_grid.reshape(len(x_grid), 1)
 
 # Graphing the model with the data
 plt.scatter(x, y, color='red', label='Actual data')
-plt.plot(x_grid, regressor.predict(poly_transform.transform(x_grid)), color='blue', label='Model representation')
+plt.plot(x_grid, regressor.predict(poly_transform.transform(x_grid)), color='blue', label='Model Representation')
 plt.title('Job Level vs Salary')
 plt.xlabel('Job Level (1 - 10)')
 plt.ylabel('Salary')
