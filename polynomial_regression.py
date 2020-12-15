@@ -22,7 +22,7 @@ sc_y = StandardScaler()
 sc_y.fit_transform(y_train)
 sc_y.transform(y_test)
 
-# Polynomial transformation of the dataset to 4th degree
+# Polynomial transformation of the dataset to 3rd degree
 from sklearn.preprocessing import PolynomialFeatures
 poly_transform = PolynomialFeatures(degree=3, include_bias=False)
 x_poly = poly_transform.fit_transform(x)
