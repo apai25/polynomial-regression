@@ -7,7 +7,7 @@ dataset = pd.read_csv('Position_Salaries.csv')
 
 # Splitting into x and y subsets
 x = dataset.iloc[:, 1:2].values
-y = dataset.iloc[:, 2].values
+y = dataset.iloc[:, 2:3].values
 
 # Creating training and test sets
 from sklearn.model_selection import train_test_split
@@ -38,10 +38,10 @@ x_grid_train = np.arange(min(x_train), max(x_train) + .01, step=0.01)
 x_grid_train = x_grid_train.reshape(len(x_grid_train), 1)
 
 x_grid_test = np.arange(min(x_test), max(x_test) + .01, step=0.01)
-x_grid_test = x_grid_train.reshape(len(x_grid_test), 1)
+x_grid_test = x_grid_test.reshape(len(x_grid_test), 1)
 
 # Graphing the model with the training data
-plt.scatter(x, y, color='red', label='Training Data Points')
+plt.scatter(x_train, y_train, color='red', label='Training Data Points')
 plt.plot(x_grid_train, regressor.predict(poly_transform.transform(x_grid_train)), color='blue', label='Model Curve')
 plt.title('Job Level vs Salary (Training Dataset)')
 plt.xlabel('Job Level (1 - 10)')
@@ -50,7 +50,7 @@ plt.legend()
 plt.show()
 
 # Graphing the model with the testing data
-plt.scatter(x, y, color='red', label='Test Data Points')
+plt.scatter(x_test, y_test, color='red', label='Test Data Points')
 plt.plot(x_grid_test, regressor.predict(poly_transform.transform(x_grid_test)), color='blue', label='Model Curve')
 plt.title('Job Level vs Salary (Test Dataset)')
 plt.xlabel('Job Level (1 - 10)')
