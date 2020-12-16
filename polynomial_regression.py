@@ -57,3 +57,6 @@ plt.xlabel('Job Level (1 - 10)')
 plt.ylabel('Salary')
 plt.legend()
 plt.show()
+
+prediction = regressor.predict(poly_transform.transform([[11]]))
+print(prediction)
