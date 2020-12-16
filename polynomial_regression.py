@@ -25,24 +25,34 @@ sc_y.transform(y_test)
 # Polynomial transformation of the dataset to 3rd degree
 from sklearn.preprocessing import PolynomialFeatures
 poly_transform = PolynomialFeatures(degree=3, include_bias=False)
-x_poly = poly_transform.fit_transform(x)
+x_poly_train = poly_transform.fit_transform(x_train)
+x_poly_test = poly_transform.transform(x_test)
 
 # Creating polynomial regressor
 from sklearn.linear_model import LinearRegression
 regressor = LinearRegression()
-regressor.fit(x_poly, y)
+regressor.fit(x_poly_train, y_train)
 
-# Predicting on the dataset and storing values into 'prediction' variable
-predictions = regressor.predict(x_poly)
+# Creating x_grid datasets (have smaller increments) for smoother graphing
+x_grid_train = np.arange(min(x_train), max(x_train) + .01, step=0.01)
+x_grid_train = x_grid_train.reshape(len(x_grid_train), 1)
 
-# Creating x_grid variable (has smaller increments) for smoother graphing
-x_grid = np.arange(min(x), max(x) + .01, step=0.01)
-x_grid = x_grid.reshape(len(x_grid), 1)
+x_grid_test = np.arange(min(x_test), max(x_test) + .01, step=0.01)
+x_grid_test = x_grid_train.reshape(len(x_grid_test), 1)
 
-# Graphing the model with the data
-plt.scatter(x, y, color='red', label='Actual data')
-plt.plot(x_grid, regressor.predict(poly_transform.transform(x_grid)), color='blue', label='Model Representation')
-plt.title('Job Level vs Salary')
+# Graphing the model with the training data
+plt.scatter(x, y, color='red', label='Training Data Points')
+plt.plot(x_grid_train, regressor.predict(poly_transform.transform(x_grid_train)), color='blue', label='Model Curve')
+plt.title('Job Level vs Salary (Training Dataset)')
+plt.xlabel('Job Level (1 - 10)')
+plt.ylabel('Salary')
+plt.legend()
+plt.show()
+
+# Graphing the model with the testing data
+plt.scatter(x, y, color='red', label='Test Data Points')
+plt.plot(x_grid_test, regressor.predict(poly_transform.transform(x_grid_test)), color='blue', label='Model Curve')
+plt.title('Job Level vs Salary (Test Dataset)')
 plt.xlabel('Job Level (1 - 10)')
 plt.ylabel('Salary')
 plt.legend()
